@@ -264,32 +264,33 @@ const parallaxStyle = computed(() => {
             />
 
             <!-- Content -->
-            <div class="relative z-10 mx-auto w-full max-w-[640px] px-6 pt-20 pb-24 text-center md:pt-28">
-                <!-- Location -->
-                <div class="hero-enter-0 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm">
-                    <MapPin class="h-3 w-3 text-white/50" />
-                    <p class="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/60" style="font-family: 'Inter', sans-serif;">
-                        Serving Grayson, Kentucky
+            <div class="relative z-10 mx-auto w-full max-w-2xl px-6 pt-20 pb-24 text-left md:pt-28">
+                <!-- Headline - stacked lines -->
+                <div class="space-y-4" aria-label="Welcome message emphasizing everyone is welcome">
+                    <h1 class="hero-enter-1 text-5xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl" style="font-family: 'Inter', sans-serif;">
+                        No perfect people.
+                    </h1>
+                    <h2 class="hero-enter-2 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl" style="font-family: 'Inter', sans-serif;">
+                        No prerequisites.
+                    </h2>
+                    <p class="hero-enter-3 text-lg font-medium leading-relaxed text-white/80 sm:text-xl" style="font-family: 'Inter', sans-serif;">
+                        Just grace — and a place to belong.
                     </p>
                 </div>
 
-                <!-- Headline -->
-                <h1 class="hero-enter-1 mt-7 text-4xl leading-[1.1] font-bold tracking-tight text-white sm:text-5xl md:text-6xl" style="font-family: 'Playfair Display', serif;">
-                    A Church Family<br />Where You Belong
-                </h1>
+                <!-- Service times meta pill -->
+                <div class="hero-enter-3 mt-6 max-w-2xl">
+                    <div
+                        class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white shadow-sm backdrop-blur"
+                        aria-label="Service times and location: Sundays 10:30 AM, Wednesdays 7 PM, Grayson Kentucky"
+                    >
+                        Sundays 10:30 AM • Wednesdays 7 PM • Grayson, KY
+                    </div>
+                </div>
 
-                <!-- Subhead -->
-                <p class="hero-enter-2 mx-auto mt-6 max-w-md text-base leading-relaxed text-white/75 sm:text-lg" style="font-family: 'Inter', sans-serif;">
-                    High-praise worship, Spirit-led preaching, and a community that believes God still moves today.
-                </p>
-
-                <!-- Microline -->
-                <p class="hero-enter-2 mt-4 text-sm italic text-white/50" style="font-family: 'Playfair Display', serif;">
-                    Come expecting. Come hungry. Come as you are.
-                </p>
-
-                <!-- CTAs -->
-                <div class="hero-enter-3 mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                <!-- CTA Row -->
+                <div class="hero-enter-4 mt-8 flex flex-col items-start gap-3 sm:flex-row sm:gap-4">
+                    <!-- Primary CTA -->
                     <a href="#visit">
                         <Button
                             size="lg"
@@ -299,23 +300,15 @@ const parallaxStyle = computed(() => {
                             <ArrowRight class="ml-2 h-4.5 w-4.5" />
                         </Button>
                     </a>
-                    <button
-                        class="inline-flex h-13 items-center gap-2 rounded-full border border-white/15 bg-white/8 px-8 text-[15px] font-semibold text-white/90 backdrop-blur-md transition-all duration-300 hover:bg-white/12"
-                    >
-                        <Play class="h-4 w-4" />
-                        Watch Live
-                    </button>
-                </div>
 
-                <!-- Links -->
-                <div class="hero-enter-4 mt-7 flex items-center justify-center gap-5 text-sm">
-                    <a href="#services" class="font-medium text-white/50 transition-colors hover:text-white/80">
-                        Service Times
-                    </a>
-                    <span class="text-white/20">·</span>
-                    <a href="https://www.facebook.com/nbagGrayson" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 font-medium text-white/50 transition-colors hover:text-white/80">
-                        <Facebook class="h-3.5 w-3.5" />
-                        Follow on Facebook
+                    <!-- Secondary CTA -->
+                    <a href="/live" aria-label="Watch live service stream">
+                        <button
+                            class="inline-flex h-13 items-center justify-center rounded-xl border border-white/25 bg-white/0 px-10 text-[15px] font-semibold text-white backdrop-blur transition-all hover:bg-white/10"
+                        >
+                            <Play class="mr-2 h-4.5 w-4.5 opacity-90" />
+                            Watch Live
+                        </button>
                     </a>
                 </div>
             </div>
@@ -346,17 +339,11 @@ const parallaxStyle = computed(() => {
                 </div>
 
                 <!-- Service times cards -->
-                <div class="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-3">
+                <div class="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-2">
                     <div class="rounded-2xl border border-primary/10 bg-card p-8 text-center transition-all hover:border-primary/20 hover:shadow-md hover:shadow-primary/5">
                         <p class="text-sm font-semibold text-muted-foreground">Sunday Morning</p>
-                        <p class="mt-3 text-4xl font-bold tracking-tight text-foreground" style="font-family: 'Playfair Display', serif;">10:00 <span class="text-xl">AM</span></p>
+                        <p class="mt-3 text-4xl font-bold tracking-tight text-foreground" style="font-family: 'Playfair Display', serif;">10:30 <span class="text-xl">AM</span></p>
                         <p class="mt-2 text-sm text-muted-foreground">Worship Service</p>
-                    </div>
-
-                    <div class="rounded-2xl border border-primary/10 bg-card p-8 text-center transition-all hover:border-primary/20 hover:shadow-md hover:shadow-primary/5">
-                        <p class="text-sm font-semibold text-muted-foreground">Sunday Evening</p>
-                        <p class="mt-3 text-4xl font-bold tracking-tight text-foreground" style="font-family: 'Playfair Display', serif;">6:00 <span class="text-xl">PM</span></p>
-                        <p class="mt-2 text-sm text-muted-foreground">Evening Worship</p>
                     </div>
 
                     <div class="rounded-2xl border border-primary/10 bg-card p-8 text-center transition-all hover:border-primary/20 hover:shadow-md hover:shadow-primary/5">
@@ -500,7 +487,7 @@ const parallaxStyle = computed(() => {
                                 <div>
                                     <p class="text-xs font-semibold uppercase tracking-wider text-gray-600">Service Times</p>
                                     <p class="mt-2 text-sm leading-relaxed text-gray-900">
-                                        Sundays 10 AM &amp; 6 PM<br />
+                                        Sundays 10:30 AM<br />
                                         Wednesdays 7 PM
                                     </p>
                                 </div>
@@ -602,7 +589,7 @@ const parallaxStyle = computed(() => {
                 <p class="text-center text-xs text-muted-foreground">
                     &copy; {{ new Date().getFullYear() }} New Beginnings Assembly of God. All rights reserved.
                 </p>
-            </div>
+        </div>
         </footer>
     </div>
 </template>

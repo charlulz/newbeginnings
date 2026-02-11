@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { dashboard } from '@/routes';
+import { dashboard, login, register } from '@/routes';
 import { Menu, ArrowRight, ChevronDown, Baby, Sparkles, Shield, Zap, Flame } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -191,19 +191,36 @@ onUnmounted(() => {
                     </Button>
                 </Link>
 
-                <!-- CTA button -->
-                <a v-if="!$page.props.auth.user" href="#visit" class="hidden sm:block">
-                    <button
-                        :class="[
-                            'inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5',
-                            scrolled
-                                ? 'bg-gray-900 text-white shadow-lg shadow-black/10 hover:bg-gray-800'
-                                : 'bg-white text-gray-900 shadow-lg shadow-black/25 hover:shadow-xl',
-                        ]"
-                    >
-                        Plan Your Visit
-                    </button>
-                </a>
+                <!-- Auth links (if not logged in) -->
+                <template v-if="!$page.props.auth.user">
+                    <Link :href="login()" class="hidden text-sm font-medium transition-colors sm:block" :class="scrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white'">
+                        Log in
+                    </Link>
+                    <Link v-if="$page.props.canRegister" :href="register()" class="hidden sm:block">
+                        <button
+                            :class="[
+                                'inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5',
+                                scrolled
+                                    ? 'bg-gray-900 text-white shadow-lg shadow-black/10 hover:bg-gray-800'
+                                    : 'bg-white text-gray-900 shadow-lg shadow-black/25 hover:shadow-xl',
+                            ]"
+                        >
+                            Sign up
+                        </button>
+                    </Link>
+                    <a href="#visit" class="hidden sm:block">
+                        <button
+                            :class="[
+                                'inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5',
+                                scrolled
+                                    ? 'bg-gray-900 text-white shadow-lg shadow-black/10 hover:bg-gray-800'
+                                    : 'bg-white text-gray-900 shadow-lg shadow-black/25 hover:shadow-xl',
+                            ]"
+                        >
+                            Plan Your Visit
+                        </button>
+                    </a>
+                </template>
 
                 <!-- Mobile menu trigger -->
                 <Sheet v-model:open="mobileOpen">
@@ -306,16 +323,36 @@ onUnmounted(() => {
                                 </a>
                             </nav>
 
-                            <!-- Mobile CTA -->
-                            <div class="border-t px-6 py-5">
-                                <a href="#visit" @click="mobileOpen = false">
-                                    <button
-                                        class="flex w-full items-center justify-center gap-2 rounded-2xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-black/10 transition-colors hover:bg-gray-800"
-                                    >
-                                        Plan Your Visit
-                                        <ArrowRight class="h-4 w-4" />
-                                    </button>
-                                </a>
+                            <!-- Mobile Auth & CTA -->
+                            <div class="border-t px-6 py-5 space-y-3">
+                                <template v-if="!$page.props.auth.user">
+                                    <div class="flex gap-2">
+                                        <Link :href="login()" class="flex-1 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-center text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50" @click="mobileOpen = false">
+                                            Log in
+                                        </Link>
+                                        <Link v-if="$page.props.canRegister" :href="register()" class="flex-1 rounded-xl bg-gray-900 px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-gray-800" @click="mobileOpen = false">
+                                            Sign up
+                                        </Link>
+                                    </div>
+                                    <a href="#visit" @click="mobileOpen = false">
+                                        <button
+                                            class="flex w-full items-center justify-center gap-2 rounded-2xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-black/10 transition-colors hover:bg-gray-800"
+                                        >
+                                            Plan Your Visit
+                                            <ArrowRight class="h-4 w-4" />
+                                        </button>
+                                    </a>
+                                </template>
+                                <template v-else>
+                                    <Link :href="dashboard()" @click="mobileOpen = false">
+                                        <button
+                                            class="flex w-full items-center justify-center gap-2 rounded-2xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-black/10 transition-colors hover:bg-gray-800"
+                                        >
+                                            Dashboard
+                                            <ArrowRight class="h-4 w-4" />
+                                        </button>
+                                    </Link>
+                                </template>
                             </div>
                         </div>
                     </SheetContent>
